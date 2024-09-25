@@ -4,6 +4,6 @@ public class FinLimite extends Limite{
 
 	@Override
 	public String toString() {
-		return "FinLimite";
+		return "Fin Limite";
 	}
 }

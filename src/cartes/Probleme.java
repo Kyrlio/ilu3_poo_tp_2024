@@ -1,6 +1,6 @@
 package cartes;
 
-public abstract class Probleme {
+public abstract class Probleme extends Carte {
 	private Type type;
 
 	protected Probleme(Type type) {
