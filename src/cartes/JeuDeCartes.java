@@ -42,7 +42,7 @@ public final class JeuDeCartes {
 	}
 	
 	// Pour recupérer toutes les cartes et les initialiser dans Sabot plus facilement
-	public Carte[] getToutesLesCartes() {
+	public Carte[] donnerCartes() {
         int totalCartes = 0;
         for (Configuration config : typesDeCartes) {
             if (config != null) {
@@ -63,6 +63,127 @@ public final class JeuDeCartes {
         return toutesLesCartes;
     }
 	
+	public boolean checkCount() {
+		int borne25 = 0;
+		int borne50 = 0;
+		int borne75 = 0;
+		int borne100 = 0;
+		int borne200 = 0;
+		int feuVert = 0;
+		int feuRouge = 0;
+		int finLimite = 0;
+		int bidonEssence = 0;
+		int roueSecours = 0;
+		int reparations = 0;
+		int limite50 = 0;
+		int panneEssence = 0;
+		int crevaison = 0;
+		int accident = 0;
+		int citerneEssence = 0;
+		int increvable = 0;
+		int asVolant = 0;
+		int prioritaire = 0;
+		Carte[] checkCartes = donnerCartes();
+		
+		for (Carte carte : checkCartes) {
+			if (carte instanceof Attaque) {
+				switch ((((Attaque) carte).getType())) {
+					case FEU : 
+						feuRouge++;
+						break;
+						
+					case ESSENCE :
+						panneEssence++;
+						break;
+						
+					case CREVAISON :
+						crevaison++;
+						break;
+						
+					case ACCIDENT :
+						accident++;
+						break;
+				}
+			} else if (carte instanceof Borne) {
+				switch (((Borne) carte).getKm()) {
+					case 25:
+						borne25++;
+						break;
+						
+					case 50:
+						borne50++;
+						break;
+						
+					case 75:
+						borne75++;
+						break;
+						
+					case 100:
+						borne100++;
+						break;
+						
+					case 200:
+						borne200++;
+						break;
+				}
+			} else if (carte instanceof Parade) {
+				switch(((Parade) carte).getType()) {
+				case FEU : 
+					feuVert++;
+					break;
+				case ESSENCE :
+					bidonEssence++;
+					break;
+				case CREVAISON :
+					roueSecours++;
+					break;
+				case ACCIDENT :
+					reparations++;
+					break;
+				}
+			} else if (carte instanceof Botte) {
+					switch (((Botte) carte).getType()) {
+						case FEU : 
+							prioritaire++;
+							break;
+						case ESSENCE :
+							citerneEssence++;
+							break;
+						case CREVAISON :
+							increvable++;
+							break;
+						case ACCIDENT :
+							asVolant++;
+							break;
+					}
+			} else if (carte instanceof DebutLimite) {
+				limite50++;
+			} else if (carte instanceof FinLimite) {
+				finLimite++;
+			}
+		}
+		
+		return 
+				borne25 == 10 &&
+				borne50 == 10 &&
+				borne75 == 10 &&
+				borne100 == 12 &&
+				borne200 == 4 &&
+				feuVert == 14 &&
+				feuRouge == 5 &&
+				finLimite == 6 &&
+				bidonEssence == 6 &&
+				roueSecours == 6 &&
+				reparations == 6 &&
+				limite50 == 4 &&
+				panneEssence == 3 &&
+				crevaison == 3 &&
+				accident == 3 &&
+				citerneEssence == 1 &&
+				increvable == 1 &&
+				asVolant == 1 &&
+				prioritaire == 1;
+	}
 	
 	
 	
@@ -71,7 +192,8 @@ public final class JeuDeCartes {
 	
 	
 	
-	class Configuration {
+	
+	private class Configuration {
 		private int nbExemplaires;
 		private Carte carte;
 		
