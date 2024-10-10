@@ -9,13 +9,15 @@ import cartes.JeuDeCartes;
 
 public class Sabot<T extends Carte> implements Iterable<T>{
 	private Carte[] cartes;
-	private int nbCartes = 0; // Initialement toutes les cartes du jeu
+	private int nbCartes = 0; 
 	private int nombreOperations = 0;
 
-	public Sabot() {
-		JeuDeCartes jeu = new JeuDeCartes();
-		this.cartes = jeu.donnerCartes();
+	public Sabot(Carte[] cartes) {
+		this.cartes = cartes;
 		this.nbCartes = cartes.length;
+//		JeuDeCartes jeu = new JeuDeCartes();
+//		this.cartes = jeu.donnerCartes();
+//		this.nbCartes = cartes.length;
 	}
 	
 	public boolean estVide() {
@@ -23,7 +25,6 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 	}
 	
 	public void ajouterCarte(Carte carte) throws IllegalAccessException {
-		//System.out.println("nbCartes : " + nbCartes + "\ncartes.length = " + cartes.length);
 		if (nbCartes >= cartes.length) {
 			throw new IllegalAccessException("Le sabot plein ! Impossible d'ajouter la carte");
 		} else {
@@ -40,6 +41,7 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 		}
 		T carte = iter.next();
 		iter.remove();
+		System.out.println(iter.next());
 		System.out.println("Je pioche " + carte.toString());
 		return carte;
 	}
