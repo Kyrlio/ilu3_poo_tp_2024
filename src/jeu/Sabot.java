@@ -15,9 +15,6 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 	public Sabot(Carte[] cartes) {
 		this.cartes = cartes;
 		this.nbCartes = cartes.length;
-//		JeuDeCartes jeu = new JeuDeCartes();
-//		this.cartes = jeu.donnerCartes();
-//		this.nbCartes = cartes.length;
 	}
 	
 	public boolean estVide() {
@@ -34,6 +31,7 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 		}
 	}
 	
+	// Renvoie la première carte du sabot et la supprime du sabot
 	public T piocher() {
 		Iterator<T> iter = this.iterator();
 		if (!iter.hasNext()) {

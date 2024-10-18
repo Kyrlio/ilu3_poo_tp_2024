@@ -11,12 +11,12 @@ public class TestSabot {
 		
 		/* -------------------------------------------------- TP1 --------------------------------------------------------*/
 		
-		Sabot sabot = new Sabot<Carte>();
-		
-
-		for (int i = 0; i < 106; i++) {
-			sabot.piocher();
-		}
+//		Sabot sabot = new Sabot<Carte>();
+//		
+//
+//		for (int i = 0; i < 106; i++) {
+//			sabot.piocher();
+//		}
 		
 //		Iterator<Carte> iter = sabot.iterator();
 //        while (iter.hasNext()) {
