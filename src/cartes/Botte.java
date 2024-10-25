@@ -13,11 +13,16 @@ public class Botte extends Probleme{
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Botte) {
-			Botte objBotte = (Botte) obj;
+		if (obj instanceof Botte botte) {
+			Botte objBotte = botte;
 			return this.getType().equals(objBotte.getType());
 		}
 		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getType().hashCode();
 	}
 	
 }
