@@ -23,9 +23,8 @@ public class ZoneDeJeu {
 	}
 	
 	public int donnerLimitationVitesse() {
-		int limite = 200;
 		if (pileLimites.isEmpty() || pileLimites.getFirst() instanceof FinLimite || ensBotte.contains(new Botte(Type.FEU))) 
-			return limite;
+			return 200;
 		else
 			return 50;
 	}
@@ -50,28 +49,17 @@ public class ZoneDeJeu {
 	
 	// Renvoie true si une borne peut etre déposée
 	public boolean peutAvancer() {
-
-		if (pileBatailles.isEmpty() && estPrioritaire()) {
-			return true;
-		}
+		if (pileBatailles.isEmpty() && estPrioritaire()) return true;
 		
 		if (!pileBatailles.isEmpty()) {
 			Bataille first = pileBatailles.getFirst();
-			if (first.equals(Cartes.FEU_VERT)) {
-				return true;
-			}
-			if (first instanceof Parade && estPrioritaire()) {
-				return true;
-			}
-			if (first.equals(new Attaque(Type.FEU)) && estPrioritaire()) {
-				return true;
-			}
+			if (first.equals(Cartes.FEU_VERT)) return true;
+			if (first instanceof Parade && estPrioritaire()) return true;
+			if (first.equals(new Attaque(Type.FEU)) && estPrioritaire()) return true;
 			if (first instanceof Attaque && !first.equals(new Attaque(Type.FEU))) {
 				Type firstType = first.getType();
 				Botte botte = new Botte(firstType);
-				if (ensBotte.contains(botte) && estPrioritaire()) {
-					return true;
-				}
+				if (ensBotte.contains(botte) && estPrioritaire()) return true;
 			}
 		}
 		
