@@ -44,6 +44,12 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 		return carte;
 	}
 	
+	public void afficherSabot() {
+		for (Carte carte : cartes) {
+			System.out.println(carte);
+		}
+	}
+	
 	
 	
 	public Iterator<T> iterator(){

@@ -1,6 +1,8 @@
 package jeu;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 import cartes.Carte;
@@ -10,33 +12,12 @@ public class Joueur {
 	private ZoneDeJeu zoneDeJeu;
 	private MainJoueur main;
 	
-	protected Joueur(String nom) {
+	public Joueur(String nom) {
 		this.nom = nom;
 		this.zoneDeJeu = new ZoneDeJeu();
 		this.main = new MainJoueur();
 	}
 
-	public ZoneDeJeu getZoneDeJeu() {
-		return zoneDeJeu;
-	}
-	
-	@Override
-	public String toString() {
-		return nom;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Joueur) {
-			Joueur joueur = (Joueur) obj;
-			return this.toString().equals(joueur.toString());
-		}
-		return false;
-	}
-
-	public MainJoueur getMain() {
-		return main;
-	}
 	
 	public void donner(Carte carte) {
 		main.prendre(carte);
@@ -81,5 +62,56 @@ public class Joueur {
 		return coupsDefausse;
 	}
 	
-
+	public void retirerDeLaMain(Carte carte) {
+		main.jouer(carte);
+	}
+	
+	private Coup randomCoupChoisi(Set<Coup> coup) {
+		Iterator<Coup> iter = coup.iterator();
+		Random random = new Random();
+		Coup next = null;
+		int n = random.nextInt(coup.size());
+		for (int i = 0; i < n; i++) {
+			next = iter.next();
+			if (i == n) {
+				break;
+			}
+		}
+		
+		return next;
+	}
+	
+	public Coup choisirCoup(Set<Joueur> participants) {
+		Set<Coup> coupsPossibles = coupsPossibles(participants);
+		
+		if (coupsPossibles.isEmpty())
+			return randomCoupChoisi(coupsDefausse());
+		else 
+			return randomCoupChoisi(coupsPossibles);
+	}
+	
+	
+	
+	public ZoneDeJeu getZoneDeJeu() {
+		return zoneDeJeu;
+	}
+	
+	@Override
+	public String toString() {
+		return nom;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Joueur) {
+			Joueur joueur = (Joueur) obj;
+			return this.toString().equals(joueur.toString());
+		}
+		return false;
+	}
+	
+	public MainJoueur getMain() {
+		return main;
+	}
+	
 }

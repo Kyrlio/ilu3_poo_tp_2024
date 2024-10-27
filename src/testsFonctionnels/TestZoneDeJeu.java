@@ -8,6 +8,8 @@ import cartes.DebutLimite;
 import cartes.FinLimite;
 import cartes.Parade;
 import cartes.Type;
+import jeu.Jeu;
+import jeu.Joueur;
 import jeu.ZoneDeJeu;
 
 public class TestZoneDeJeu {
@@ -253,6 +255,11 @@ public class TestZoneDeJeu {
 			zoneDeJeu.deposer(new DebutLimite());
 		}
 		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+		
+		System.out.println("--------------------------------------");
+		
+		Jeu jeu = new Jeu();
+		jeu.distribuerCartes();
 		
 		//RESULTAT ATTENDU POUR LE TP4 Partie 1
 //		Deposer carte Feu rouge
