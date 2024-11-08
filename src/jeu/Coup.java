@@ -33,7 +33,12 @@ public class Coup {
 		return (carte instanceof Attaque || carte instanceof DebutLimite);
 	}
 	
-	
+	@Override
+	public String toString() {
+		if (getJoueurCible() == null)
+			return "defausse la carte " + carte.toString();
+		return "depose la carte " + carte.toString() + " dans la zone de jeu de " + getJoueurCible(); 
+	}
 	
 	
 

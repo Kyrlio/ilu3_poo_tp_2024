@@ -18,7 +18,7 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 	}
 	
 	public boolean estVide() {
-		return nbCartes == 0;
+		return cartes[0] == null;
 	}
 	
 	public void ajouterCarte(Carte carte) throws IllegalAccessException {
@@ -39,8 +39,6 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 		}
 		T carte = iter.next();
 		iter.remove();
-		System.out.println(iter.next());
-		System.out.println("Je pioche " + carte.toString());
 		return carte;
 	}
 	
@@ -48,6 +46,10 @@ public class Sabot<T extends Carte> implements Iterable<T>{
 		for (Carte carte : cartes) {
 			System.out.println(carte);
 		}
+	}
+	
+	public int getSizeSabot() {
+		return cartes.length;
 	}
 	
 	

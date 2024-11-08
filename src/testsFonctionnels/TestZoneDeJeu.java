@@ -260,6 +260,8 @@ public class TestZoneDeJeu {
 		
 		Jeu jeu = new Jeu();
 		jeu.distribuerCartes();
+		Joueur caca = new Joueur("caca");
+		System.out.println(caca.afficherEtatJoueur());
 		
 		//RESULTAT ATTENDU POUR LE TP4 Partie 1
 //		Deposer carte Feu rouge

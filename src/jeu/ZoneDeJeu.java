@@ -131,5 +131,14 @@ public class ZoneDeJeu {
 		return ensBotte.contains(Cartes.PRIORITAIRE);
 	}
 	
+	public String afficherBottes() {
+		if (ensBotte.isEmpty()) return "Aucune botte.";
+		return ensBotte.toString();
+	}
+	
+	public Bataille getFirstBataille() {
+		if (pileBatailles.isEmpty()) return null;
+		return pileBatailles.getFirst();
+	}
 
 }
