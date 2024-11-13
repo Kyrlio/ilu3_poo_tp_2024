@@ -16,6 +16,7 @@ public class Jeu {
 	private Sabot sabot;			// Cartes melangees
 	private Set<Joueur> joueurs;
 	private Iterator<Joueur> iter;
+	private final int NBCARTES = 6;
 
 	public Jeu() {
 		JeuDeCartes jeu = new JeuDeCartes();
@@ -24,7 +25,7 @@ public class Jeu {
 		Collections.addAll(listeCartes, cartes);
 		listeCartes = GestionCartes.melanger(listeCartes);
 		Carte[] cartesMelangees = listeCartes.toArray(new Carte[0]);
-		this.sabot = new Sabot<>(cartesMelangees);
+		sabot = new Sabot<>(cartesMelangees);
 		joueurs = new LinkedHashSet<>();
 		iter = joueurs.iterator();
 	}
@@ -36,7 +37,7 @@ public class Jeu {
 	// distribue 6 cartes à tous les joueurs
 	public void distribuerCartes() {
 		for (Joueur joueur : joueurs) {
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < NBCARTES; i++) {
 				joueur.prendreCarte(sabot);
 			}
 		}
@@ -44,7 +45,7 @@ public class Jeu {
 	
 	public StringBuilder jouerTour(Joueur joueur) {
 		Set<Joueur> participants = new LinkedHashSet<>(joueurs);
-		participants.remove(joueur);
+//		participants.remove(joueur);
 				
 		StringBuilder str = new StringBuilder();
 		Carte carte = joueur.prendreCarte(sabot);

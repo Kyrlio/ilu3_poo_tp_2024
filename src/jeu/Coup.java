@@ -8,13 +8,11 @@ public class Coup {
 	private Carte carte;
 	private Joueur joueurCourant;
 	private Joueur joueurCible;
-	private boolean gotoSabot;
 	
 	public Coup(Carte carte, Joueur joueurCourant, Joueur joueurCible) {
 		this.carte = carte;
 		this.joueurCourant = joueurCourant;
-		if (joueurCible == null) gotoSabot = true;
-		else this.joueurCible = joueurCible;
+		this.joueurCible = joueurCible;
 	}
 
 	public Carte getCarte() {
@@ -30,7 +28,8 @@ public class Coup {
 	}
 	
 	public boolean estValide() {
-		return (carte instanceof Attaque || carte instanceof DebutLimite);
+		if (carte instanceof Attaque || carte instanceof DebutLimite) return joueurCible != null;
+		else return true;
 	}
 	
 	@Override
