@@ -29,7 +29,7 @@ public class Coup {
 	}
 	
 	public boolean estValide() {
-		boolean cond1 = !(carte instanceof Attaque || carte instanceof DebutLimite && joueurCible == null);
+		boolean cond1 = !(carte instanceof Attaque || carte instanceof DebutLimite && joueurCible == joueurCourant);
 		boolean cond2 = true;
 		if (carte instanceof Borne borne) {
 			cond2 = joueurCourant.estDepotAutorise(borne);

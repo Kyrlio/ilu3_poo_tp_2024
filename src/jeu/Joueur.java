@@ -10,7 +10,7 @@ import cartes.Carte;
 import cartes.Parade;
 import cartes.Type;
 
-public class Joueur {
+public class Joueur implements Comparable<Joueur>{
 	private String nom;
 	private ZoneDeJeu zoneDeJeu;
 	private MainJoueur main;
@@ -110,7 +110,23 @@ public class Joueur {
 				+ "Km parcourus : " + donnerKmParcourus();
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Joueur) {
+			Joueur joueur = (Joueur) obj;
+			return this.toString().equals(joueur.toString());
+		}
+		return false;
+	}
 	
+	@Override
+	public int compareTo(Joueur joueurToCompare) {
+		int comparaison = this.donnerKmParcourus() - joueurToCompare.donnerKmParcourus();
+		if (comparaison != 0) return comparaison;
+		return nom.compareTo(joueurToCompare.nom);
+	}
+	
+	/* ---------- GETTERS ---------- */
 	
 	public ZoneDeJeu getZoneDeJeu() {
 		return zoneDeJeu;
@@ -121,17 +137,10 @@ public class Joueur {
 		return nom;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Joueur) {
-			Joueur joueur = (Joueur) obj;
-			return this.toString().equals(joueur.toString());
-		}
-		return false;
-	}
 	
 	public MainJoueur getMain() {
 		return main;
 	}
+
 	
 }

@@ -2,11 +2,13 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import cartes.Carte;
 import cartes.JeuDeCartes;
@@ -86,9 +88,10 @@ public class Jeu {
 		}
 		if (sabot.estVide()) System.out.println("Le sabot est vide.");
 		System.out.println("");
+		
 		gagnant = calculerGagnant();
-		System.out.println(gagnant.afficherEtatJoueur());
-		return "\nLe gagnant est " + gagnant;
+		System.out.println("\nClassement décroissant : " + classement().toString());
+		return "Le gagnant est : " + gagnant + " avec " + gagnant.donnerKmParcourus() + " km.";
 	}
 	
 	private Joueur calculerGagnant() {
@@ -104,6 +107,28 @@ public class Jeu {
 		
 		return gagnant;
 	}
+	
+	public Set<Joueur> classement() {
+		Set<Joueur> classement = new TreeSet<>(new JoueurComparator());
+		for (Joueur joueur : joueurs)
+			classement.add(joueur);
+		return classement;
+	}
+	
+	private class JoueurComparator implements Comparator<Joueur> {
+
+		@Override
+		public int compare(Joueur j1, Joueur j2) {
+			int comparaison = j1.donnerKmParcourus() - j2.donnerKmParcourus();
+			if (comparaison != 0)
+				return comparaison;
+			return j1.toString().compareTo(j2.toString());
+		}
+		
+	}
+	
+	
+	/* ---------- GETTERS ---------- */
 
 	public Sabot getSabot() {
 		return sabot;
@@ -112,6 +137,7 @@ public class Jeu {
 	public Set<Joueur> getJoueurs() {
 		return joueurs;
 	}
+
 	
 	
 	
