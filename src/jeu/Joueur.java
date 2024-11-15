@@ -50,29 +50,6 @@ public class Joueur {
 	public Set<Coup> coupsPossibles(Set<Joueur> participants){
 		Set<Coup> coupsPossibles = new HashSet<>();
 		
-//		// Ajoute la carte Feu Vert
-//		if (this.getZoneDeJeu().getFirstBataille() == null) {
-//			for (Carte carte : main) {
-//				Parade feuVert = new Parade(Type.FEU);
-//				if (carte.equals(feuVert)) {
-//					Coup coup = new Coup(feuVert, this, this);
-//					coupsPossibles.add(coup);
-//				}
-//			}
-//			return coupsPossibles;
-//		}
-//		
-//		// Ajoute une carte borne dans sa zone de jeu
-//		if (zoneDeJeu.peutAvancer()) {
-//			for (Carte carte : main) {
-//				if (carte instanceof Borne borne) {
-//					Coup coup = new Coup(borne, this, this);
-//					coupsPossibles.add(coup);
-//				}
-//			}
-//			return coupsPossibles;
-//		}
-		
 		for (Joueur participant : participants) {
 			for (Carte carte : main) {
 				Coup coup = new Coup(carte, this, participant);

@@ -1,6 +1,7 @@
 package jeu;
 
 import cartes.Attaque;
+import cartes.Borne;
 import cartes.Carte;
 import cartes.DebutLimite;
 
@@ -28,8 +29,15 @@ public class Coup {
 	}
 	
 	public boolean estValide() {
-		if (carte instanceof Attaque || carte instanceof DebutLimite) return joueurCible != null;
-		else return true;
+		boolean cond1 = !(carte instanceof Attaque || carte instanceof DebutLimite && joueurCible == null);
+		boolean cond2 = true;
+		if (carte instanceof Borne borne) {
+			cond2 = joueurCourant.estDepotAutorise(borne);
+			if (joueurCible != joueurCourant) {
+				cond2 = false;
+			}
+		}
+		return cond1 && cond2;
 	}
 	
 	@Override
